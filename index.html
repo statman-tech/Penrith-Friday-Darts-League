@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Penrith Friday Darts League – Results & Rankings</title>
+  <style>
+    :root{--bg:#0f1115;--card:#151924;--muted:#8c99b2;--text:#e8eefc;--accent:#35d399;--accent-weak:#1c4a3b;--border:#243049;--focus:#b7e4ff;--shadow:0 10px 30px rgba(0,0,0,.35);--radius:14px}
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial;color:var(--text);background:linear-gradient(180deg,#0b0d11 0%,var(--bg) 100%)}
+    header{position:sticky;top:0;z-index:10;backdrop-filter:saturate(1.2) blur(8px);background:rgba(10,12,17,.6);border-bottom:1px solid var(--border)}
+    .wrap{max-width:1100px;margin:0 auto;padding:14px 18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:38px;height:38px;border-radius:50%;background:radial-gradient(72% 72% at 50% 28%,var(--accent) 0%,#1e8f66 60%,transparent 61%),conic-gradient(from 210deg,#1a1f2d,#0c0f16);box-shadow:inset 0 0 0 2px var(--accent-weak),var(--shadow)}.title{font-weight:700;letter-spacing:.2px}
+    .tabs{margin-top:12px;display:flex;gap:8px;overflow:auto;padding-bottom:6px}.tabs button{-webkit-appearance:none;appearance:none;border:1px solid var(--border);background:#111522;color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+    .tabs button[aria-selected="true"]{background:linear-gradient(180deg,#13202a,#0f1820);border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent-weak),0 6px 16px rgba(0,0,0,.25)}
+    .panel{max-width:1100px;margin:16px auto;padding:18px}.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:720px){.controls{grid-template-columns:1fr}}
+    label{display:block;font-size:14px;color:var(--muted);margin-bottom:6px}select{width:100%;padding:12px 12px;border-radius:12px;background:#0c1220;color:var(--text);border:1px solid var(--border);outline:none}
+    select:focus{border-color:var(--focus);box-shadow:0 0 0 3px rgba(183,228,255,.2)}.subcontrols{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .chip{border:1px solid var(--border);background:#0e1422;padding:9px 12px;border-radius:999px;cursor:pointer;font-size:14px;color:var(--text)}.chip[aria-pressed="true"]{border-color:var(--accent);background:#0b1512}
+    .muted{color:var(--muted)}.viewer{margin-top:16px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#0b0f18}.viewer .placeholder{padding:28px;text-align:center;color:var(--muted)}
+    .viewer iframe{width:100%;height:70vh;border:0;background:#0b0f18}.viewer img{display:block;width:100%;height:auto}.viewer .download{display:block;padding:16px;text-align:center;color:var(--text)}
+    .footer{color:var(--muted);font-size:13px;text-align:center;margin:28px 0 40px}a{color:var(--accent)}a:focus{outline:2px dashed var(--focus);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand" aria-label="League header">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div class="title">Penrith Friday Darts League</div>
+          <div class="muted" style="font-size:13px">Results • Tables • High Starts/Finishes • 180s • Rankings</div>
+        </div>
+      </div>
+      <nav class="tabs" id="divisionTabs" role="tablist" aria-label="Divisions"></nav>
+    </div>
+  </header>
+
+  <main class="panel">
+    <div class="card">
+      <div class="controls" aria-live="polite">
+        <div>
+          <label for="weekSelect">Match Week / Date</label>
+          <select id="weekSelect" aria-label="Select match date"></select>
+          <div class="subcontrols" id="weekActions" aria-label="Week content buttons"></div>
+        </div>
+        <div>
+          <label for="rankSelect">Rankings Category</label>
+          <select id="rankSelect" aria-label="Select rankings category"></select>
+          <div class="subcontrols" id="rankActions" aria-label="Rankings content buttons"></div>
+        </div>
+      </div>
+
+      <section class="viewer" id="viewer">
+        <div class="placeholder">Select a week/date and then choose “Results / Division Table / High Starts / High Finishes / 180s”, or pick a Rankings category.</div>
+      </section>
+    </div>
+
+    <div class="footer">Made with ♥ for Penrith darts. Update links in the CONFIG block below.</div>
+  </main>
+
+  <script>
+    const CONFIG = {
+      divisions: [
+        { name: "Division 1", weeks: { "2025-09-14": { results: "assets/div1/2025-09-14-results.jpg", divisionTable: "assets/div1/2025-09-14-table.pdf", highStarts: "assets/div1/2025-09-14-high-starts.png", highFinishes: "assets/div1/2025-09-14-high-finishes.png", oneEighties: "assets/div1/2025-09-14-180s.jpg" } }, rankings: { singlesWon: "assets/div1/rankings/singles.html", doublesWon: "assets/div1/rankings/doubles.html", treblesWon: "assets/div1/rankings/trebles.html", highestStart: "assets/div1/rankings/highest-start.pdf", highestFinish: "assets/div1/rankings/highest-finish.pdf", most180s: "assets/div1/rankings/most-180s.png", individual: "assets/div1/rankings/individual-table.pdf" } },
+        { name: "Division 2", weeks: { "2025-09-14": { results: "assets/div2/2025-09-14-results.jpg", divisionTable: "assets/div2/2025-09-14-table.pdf", highStarts: "assets/div2/2025-09-14-high-starts.png", highFinishes: "assets/div2/2025-09-14-high-finishes.png", oneEighties: "assets/div2/2025-09-14-180s.jpg" } }, rankings: { singlesWon: "assets/div2/rankings/singles.html", doublesWon: "assets/div2/rankings/doubles.html", treblesWon: "assets/div2/rankings/trebles.html", highestStart: "assets/div2/rankings/highest-start.pdf", highestFinish: "assets/div2/rankings/highest-finish.pdf", most180s: "assets/div2/rankings/most-180s.png", individual: "assets/div2/rankings/individual-table.pdf" } },
+        { name: "Division 3", weeks: { "2025-09-14": { results: "assets/div3/2025-09-14-results.jpg", divisionTable: "assets/div3/2025-09-14-table.pdf", highStarts: "assets/div3/2025-09-14-high-starts.png", highFinishes: "assets/div3/2025-09-14-high-finishes.png", oneEighties: "assets/div3/2025-09-14-180s.jpg" } }, rankings: { singlesWon: "assets/div3/rankings/singles.html", doublesWon: "assets/div3/rankings/doubles.html", treblesWon: "assets/div3/rankings/trebles.html", highestStart: "assets/div3/rankings/highest-start.pdf", highestFinish: "assets/div3/rankings/highest-finish.pdf", most180s: "assets/div3/rankings/most-180s.png", individual: "assets/div3/rankings/individual-table.pdf" } },
+        { name: "Division 4", weeks: { "2025-09-14": { results: "assets/div4/2025-09-14-results.jpg", divisionTable: "assets/div4/2025-09-14-table.pdf", highStarts: "assets/div4/2025-09-14-high-starts.png", highFinishes: "assets/div4/2025-09-14-high-finishes.png", oneEighties: "assets/div4/2025-09-14-180s.jpg" } }, rankings: { singlesWon: "assets/div4/rankings/singles.html", doublesWon: "assets/div4/rankings/doubles.html", treblesWon: "assets/div4/rankings/trebles.html", highestStart: "assets/div4/rankings/highest-start.pdf", highestFinish: "assets/div4/rankings/highest-finish.pdf", most180s: "assets/div4/rankings/most-180s.png", individual: "assets/div4/rankings/individual-table.pdf" } }
+      ],
+      labels: { weekButtons: { results: "Results", divisionTable: "Division Table", highStarts: "High Starts", highFinishes: "High Finishes", oneEighties: "180s" }, rankingButtons: { singlesWon: "Singles Won", doublesWon: "Doubles Won", treblesWon: "Trebles Won", highestStart: "Highest Start", highestFinish: "Highest Finish", most180s: "Most 180s", individual: "Individual Rankings" } }
+    };
+
+    const tabs=document.getElementById('divisionTabs'),weekSelect=document.getElementById('weekSelect'),weekActions=document.getElementById('weekActions'),rankSelect=document.getElementById('rankSelect'),rankActions=document.getElementById('rankActions'),viewer=document.getElementById('viewer');let currentDivisionIndex=0;
+    function buildTabs(){tabs.innerHTML='';CONFIG.divisions.forEach((div,idx)=>{const btn=document.createElement('button');btn.type='button';btn.setAttribute('role','tab');btn.setAttribute('aria-selected',idx===currentDivisionIndex?'true':'false');btn.textContent=div.name;btn.addEventListener('click',()=>{currentDivisionIndex=idx;updateForDivision();[...tabs.children].forEach((c,i)=>c.setAttribute('aria-selected',i===idx?'true':'false'))});tabs.appendChild(btn)})}
+    function updateForDivision(){const div=CONFIG.divisions[currentDivisionIndex];weekSelect.innerHTML='';const blankW=new Option('Select a date…','');weekSelect.add(blankW);Object.keys(div.weeks).sort().forEach(date=>weekSelect.add(new Option(date,date)));weekActions.innerHTML='';Object.entries(CONFIG.labels.weekButtons).forEach(([key,label])=>{const chip=chipButton(label,()=>{const date=weekSelect.value;if(!date)return showPlaceholder('Choose a date first, then select an item.');const url=(div.weeks?.[date]||{})[key];if(!url)return showPlaceholder(`${label} not available for ${date}.`);renderURL(url,`${div.name} • ${date} • ${label}`)});chip.dataset.key=key;weekActions.appendChild(chip)});rankSelect.innerHTML='';const blankR=new Option('Select rankings type…','');rankSelect.add(blankR);Object.entries(CONFIG.labels.rankingButtons).forEach(([key,label])=>{const opt=new Option(label,key);rankSelect.add(opt)});rankActions.innerHTML='';const openRank=chipButton('Open',()=>{const key=rankSelect.value;if(!key)return showPlaceholder('Choose a rankings type first.');const url=div.rankings?.[key];const label=CONFIG.labels.rankingButtons[key]||'Rankings';if(!url)return showPlaceholder(`${label} not available for ${div.name}.`);renderURL(url,`${div.name} • ${label}`)});rankActions.appendChild(openRank);showPlaceholder(`Select a date or a rankings type for ${div.name}.`)}
+    function chipButton(label,onClick){const b=document.createElement('button');b.className='chip';b.type='button';b.textContent=label;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{b.setAttribute('aria-pressed','true');onClick?.();setTimeout(()=>b.setAttribute('aria-pressed','false'),180)});return b}
+    function showPlaceholder(text){viewer.innerHTML=`<div class="placeholder">${escapeHtml(text)}</div>`}
+    function renderURL(url,title){const lower=url.toLowerCase();const isImg=/\.(png|jpe?g|gif|webp|avif)(\?.*)?$/.test(lower);const isPDF=/\.(pdf)(\?.*)?$/.test(lower);const isHTML=/\.(html?|htm)(\?.*)?$/.test(lower);if(isImg){viewer.innerHTML=`<img src="${encodeURI(url)}" alt="${escapeHtml(title)}" loading="lazy">`;return}if(isPDF||isHTML){viewer.innerHTML=`<iframe title="${escapeHtml(title)}" src="${encodeURI(url)}"></iframe>`;return}viewer.innerHTML=`<div class="placeholder">Cannot preview this file type. <a class="download" href="${encodeURI(url)}" target="_blank" rel="noopener">Open / Download</a></div>`}
+    function escapeHtml(str=''){return str.replace(/[&<>"]/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[s]))}
+    buildTabs();updateForDivision();window.addEventListener('load',()=>{const first=tabs.querySelector('button');first&&first.focus()});
+  </script>
+</body>
+</html>
